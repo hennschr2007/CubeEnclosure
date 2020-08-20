@@ -1,0 +1,13 @@
+KM.name         = 'A <=> B <=> C';
+KM.subscount    = 3;
+KM.defaultC0    = [1 0 0];
+KM.NoR          = 4;            %Number of Reactions
+KM.compCell     = {'A','B','C'};    %in order of C0
+KM.ReacSys      = 16;
+KM.type         = 1; %1=first order 2=higher order
+KM.dC           =@(t,C,k) [-k(1)*C(1)+k(2)*C(2);...
+                            k(1)*C(1)-k(2)*C(2)-k(3)*C(2)+k(4)*C(3);...
+                                                k(3)*C(2)-k(4)*C(3)];
+KM.M            = @(k) [-k(1)  k(2)       0;...
+                         k(1) -k(2)-k(3)  k(4);...
+                         0     k(3)      -k(4)]; 
